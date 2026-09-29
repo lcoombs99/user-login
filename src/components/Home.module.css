@@ -1,0 +1,20 @@
+.card {
+  background: white;
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.btn {
+  background-color: #e11d48;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
