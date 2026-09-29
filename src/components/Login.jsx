@@ -16,8 +16,9 @@ const emailReducer = (state, action) => {
   }
 };
 
+// passwordReducer uses: USER_INPUT and INPUT_BLUR
 const passwordReducer = (state, action) => {
-
+// The passwordReducer function correctly handles character length validation upon user input and input blur.
   if (action.type === 'USER_INPUT') {
     return {
       value: action.val,
@@ -34,6 +35,7 @@ const passwordReducer = (state, action) => {
 };
 
 const Login = (props) => {
+  // enteredPassword and passwordIsValid removed
   const [formIsValid, setFormIsValid] = useState(false);
 
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
@@ -46,15 +48,16 @@ const Login = (props) => {
     isValid: null
   });
 
-  // destructure to grab only the part we care about for the useEffect dep.
+  // Object destructuring is applied to both emailState and passwordState
+  // before being passed to useEffect's dependency array.
   const {isValid: emailIsValid} = emailState;
   const {isValid: passwordIsValid} = passwordState;
 
   useEffect(() => {
+    // Form validation correctly enables/disables the submit button based on the validity states of both reducers.
     const timerId = setTimeout(() => {
       setFormIsValid(emailState.isValid && passwordState.isValid);
     }, 500);
-
 
     return () => {
       clearTimeout(timerId);
@@ -73,6 +76,7 @@ const Login = (props) => {
     );
   };
 
+  // passwordChangeHandler uses dispatchPassword instead of setState function
   const passwordChangeHandler = (event) => {
     dispatchPassword({
       type: 'USER_INPUT',
@@ -89,6 +93,7 @@ const Login = (props) => {
     dispatchEmail({type: 'INPUT_BLUR'});
   };
 
+  // validatePasswordHandler uses dispatchPassword instead of setState functions
   const validatePasswordHandler = () => {
     dispatchPassword({type: 'INPUT_BLUR'});
   };
